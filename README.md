@@ -3,6 +3,9 @@ Mobile and Offline first app which allows you to
 - Store your deepest secrets
 - Store your life journal
 
+### Quality Gate
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ipr0310_my-super-diaries&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ipr0310_my-super-diaries)
+
 ### Stack
 - Expo
 - Typescript
