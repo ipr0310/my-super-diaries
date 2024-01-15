@@ -23,6 +23,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": ["expo-router"],
+    "githubUrl": "https://github.com/ipr0310/my-super-diaries",
+    "scheme": "my-super-diaries",
+    "description": "Keep your secrets and diaries on your device locally!"
   }
 }

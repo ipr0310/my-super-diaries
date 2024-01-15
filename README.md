@@ -1,13 +1,18 @@
 # My Super Diaries App
+
 Mobile and Offline first app which allows you to
+
 - Store your deepest secrets
 - Store your life journal
 
 ### Quality Gate
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ipr0310_my-super-diaries&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ipr0310_my-super-diaries)
 
 ### Stack
+
 - Expo
+- Expo Router
 - Typescript
 - NativeWind
 
@@ -19,8 +24,12 @@ Mobile and Offline first app which allows you to
   - Pressing `i` will open in an iOS Simulator.
   - Pressing `w` will open in a web browser. Expo supports all major browsers.
 
+### Expo Router Navigation Options
+
+https://docs.expo.dev/router/navigating-pages/
 
 ### Efficient use-case for `clsx`
+
 ```typescript
 function A({ rounded, className }) {
   const className = clsx(
