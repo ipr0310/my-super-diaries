@@ -5,6 +5,7 @@ Mobile and Offline first app which allows you to
 
 ### Stack
 - Expo
+- Typescript
 
 ### Expo Commands
 
