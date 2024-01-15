@@ -9,6 +9,7 @@ Mobile and Offline first app which allows you to
 ### Stack
 - Expo
 - Typescript
+- NativeWind
 
 ### Expo Commands
 
@@ -17,3 +18,18 @@ Mobile and Offline first app which allows you to
   - Pressing `a` will open in an Android Emulator or connected device.
   - Pressing `i` will open in an iOS Simulator.
   - Pressing `w` will open in a web browser. Expo supports all major browsers.
+
+
+### Efficient use-case for `clsx`
+```typescript
+function A({ rounded, className }) {
+  const className = clsx(
+    "font-bold",
+    { rounded },
+    variant === "primary" && "bg-blue-500 text-white",
+    variant === "secondary" && "bg-blue-500 text-white",
+    className
+  );
+  return <B className={className} />;
+}
+```
