@@ -28,6 +28,16 @@ Mobile and Offline first app which allows you to
 
 https://docs.expo.dev/router/navigating-pages/
 
+### Built-in Layouts
+
+- **Stack navigation:** Render a stack of screens like a deck of cards with a header on top. This is a native stack navigator that uses native animations and gestures.
+
+- **Tab navigation:** Render screens with a tab bar below them.
+
+- **Drawers:** Add a drawer which can be pulled over the current context.
+
+- **Modals:** Implement native modals which float over the current context.
+
 ### Efficient use-case for `clsx`
 
 ```typescript
