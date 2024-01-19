@@ -5,18 +5,18 @@ Mobile and Offline first app which allows you to
 - Store your deepest secrets
 - Store your life journal
 
-### Quality Gate
+## Quality Gate
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ipr0310_my-super-diaries&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ipr0310_my-super-diaries)
 
-### Stack
+## Stack
 
 - Expo
 - Expo Router
 - Typescript
 - NativeWind
 
-# Expo
+## Expo
 
 ### Commands
 
@@ -51,6 +51,8 @@ https://docs.expo.dev/router/navigating-pages/
 - **Drawers:** Add a drawer which can be pulled over the current context.
 
 - **Modals:** Implement native modals which float over the current context.
+
+## clsx
 
 ### Efficient use-case for `clsx`
 
