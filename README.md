@@ -15,6 +15,7 @@ Mobile and Offline first app which allows you to
 - Expo Router
 - Typescript
 - NativeWind
+- Flashlist
 
 ## Expo
 
