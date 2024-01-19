@@ -16,13 +16,27 @@ Mobile and Offline first app which allows you to
 - Typescript
 - NativeWind
 
-### Expo Commands
+# Expo
+
+### Commands
 
 - `npx expo install` Install dependencies using expo
 - `npx expo start` Start a development server
   - Pressing `a` will open in an Android Emulator or connected device.
   - Pressing `i` will open in an iOS Simulator.
   - Pressing `w` will open in a web browser. Expo supports all major browsers.
+
+### Use Expo Dev Client
+
+#### Requirements:
+
+- `Android Studio`/`Xcode` installed
+
+#### Create an Expo development client
+
+1 - `npx expo prebuild` Generate native source code before compilation
+
+2 - `npx expo run`, `npx expo run android` or `npx expo run ios`
 
 ### Expo Router Navigation Options
 

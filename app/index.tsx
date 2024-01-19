@@ -7,7 +7,8 @@ export default function Page() {
   return (
     <View className="flex-1 items-center justify-center">
       <View className="flex gap-4 justify-center items-center mb-8">
-        <Text className="font-bold">Welcome to this planet!</Text>
+        <Text className="font-bold">Welcome to this planet called earth!</Text>
+
         <Text className="font-bold text-slate-600 text-2xl capitalize">
           Current Color Scheme: {colorScheme}
         </Text>

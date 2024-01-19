@@ -5,6 +5,7 @@ export default function Page() {
     <View className="flex-1 items-center justify-center">
       <View className="flex gap-4 justify-center items-center mb-8">
         <Text>This is the Diaries Screen</Text>
+        <Text>We will use expo SQLite</Text>
       </View>
     </View>
   );
