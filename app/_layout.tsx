@@ -51,6 +51,8 @@ export default function Layout() {
           }}
           name="(aux)/credits"
         />
+
+        <Tabs.Screen name="+not-found" options={{ href: null }} />
       </Tabs>
     </>
   );
