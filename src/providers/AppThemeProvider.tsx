@@ -21,13 +21,15 @@ export const AppThemeProvider = ({ children }: Props) => {
 
   return (
     <SafeAreaView className="flex-1" style={{ backgroundColor }}>
-      <StatusBar
-        style={themeMode === "dark" ? "light" : "dark"}
-        animated
-        backgroundColor={backgroundColor}
-      />
+      <ThemeProvider value={activeTheme}>
+        <StatusBar
+          style={themeMode === "dark" ? "light" : "dark"}
+          animated
+          backgroundColor={backgroundColor}
+        />
 
-      <ThemeProvider value={activeTheme}>{children}</ThemeProvider>
+        {children}
+      </ThemeProvider>
     </SafeAreaView>
   );
 };
