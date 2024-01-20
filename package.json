@@ -5,8 +5,8 @@
   "scripts": {
     "start": "expo start",
     "start-no-cache": "npx expo start -c",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "prebuild": "npx expo prebuild --clean",
     "run": "npx expo run",
     "ts:check": "tsc"
