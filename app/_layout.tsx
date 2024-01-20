@@ -1,12 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import { Tabs } from "expo-router/tabs";
 import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
+import { AppThemeProvider } from "@/providers/AppThemeProvider";
 
 export default function Layout() {
   return (
-    <>
-      <StatusBar style="dark" />
-
+    <AppThemeProvider>
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -54,6 +52,6 @@ export default function Layout() {
 
         <Tabs.Screen name="+not-found" options={{ href: null }} />
       </Tabs>
-    </>
+    </AppThemeProvider>
   );
 }
