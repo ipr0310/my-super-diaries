@@ -1,24 +1,26 @@
 import type { ReactNode } from "react";
-import {
-  ThemeProvider,
-  DarkTheme,
-  DefaultTheme,
-} from "@react-navigation/native";
-import { useAppStore } from "@/hooks/useAppStore";
 import { View } from "react-native";
+import { ThemeProvider } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 interface Props {
   children: ReactNode;
 }
 
 export const AppThemeProvider = ({ children }: Props) => {
-  const { themeMode } = useAppStore();
-
-  const activeTheme = themeMode === "dark" ? DarkTheme : DefaultTheme;
+  const { theme } = useAppTheme();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1 }}>
-      <ThemeProvider value={activeTheme}>{children}</ThemeProvider>
+    <View
+      style={{
+        flex: 1,
+        paddingTop: insets.top,
+        backgroundColor: theme.colors.background,
+      }}
+    >
+      <ThemeProvider value={theme}>{children}</ThemeProvider>
     </View>
   );
 };

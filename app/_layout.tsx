@@ -1,61 +1,24 @@
 import "../global.css";
-import { Tabs } from "expo-router/tabs";
-import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import { AppThemeProvider } from "@/providers/AppThemeProvider";
-import { useTranslation } from "@/hooks/useTranslation";
+import { Stack } from "expo-router";
 
-export default function Layout() {
-  const { i18n } = useTranslation();
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from "expo-router";
 
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: "(tabs)",
+};
+
+export default function RootLayout() {
   return (
     <AppThemeProvider>
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Tabs.Screen
-          options={{
-            title: i18n.t("bottomBar.home"),
-            tabBarIcon: ({ color }) => (
-              <AntDesign name="home" size={24} color={color} />
-            ),
-          }}
-          name="index"
-        />
-
-        <Tabs.Screen
-          options={{
-            title: i18n.t("bottomBar.diary"),
-            tabBarIcon: ({ color }) => (
-              <AntDesign name="book" size={24} color={color} />
-            ),
-          }}
-          name="diaries"
-        />
-
-        <Tabs.Screen
-          options={{
-            title: i18n.t("bottomBar.secrets"),
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name="user-secret" size={24} color={color} />
-            ),
-          }}
-          name="secrets"
-        />
-
-        <Tabs.Screen
-          options={{
-            title: i18n.t("bottomBar.credits"),
-            tabBarIcon: ({ color }) => (
-              <Entypo name="text-document" size={24} color={color} />
-            ),
-          }}
-          name="(aux)/credits"
-        />
-
-        <Tabs.Screen name="+not-found" options={{ href: null }} />
-      </Tabs>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+      </Stack>
     </AppThemeProvider>
   );
 }

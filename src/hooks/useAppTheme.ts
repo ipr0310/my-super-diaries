@@ -1,15 +1,20 @@
 import { useEffect } from "react";
-import { appStore } from "@/states/appStore";
 import { useColorScheme } from "nativewind";
+import { DarkTheme, DefaultTheme } from "@react-navigation/native";
+import { appStore } from "@/states/appStore";
 
-export const useAppStore = () => {
+export const useAppTheme = () => {
   const { setColorScheme } = useColorScheme();
   const themeMode = appStore((state) => state.themeMode);
   const toggleThemeMode = appStore((state) => state.toggleThemeMode);
+
+  const theme = themeMode === "dark" ? DarkTheme : DefaultTheme;
+
+  const iconColor = theme.colors.card;
 
   useEffect(() => {
     setColorScheme(themeMode);
   }, [themeMode, setColorScheme]);
 
-  return { themeMode, toggleThemeMode };
+  return { theme, themeMode, iconColor, toggleThemeMode };
 };

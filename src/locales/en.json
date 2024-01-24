@@ -12,5 +12,11 @@
     "changeLanguage": "Change Language",
     "currentColorScheme": "Current Color Scheme",
     "currentLanguage": "Current Language"
+  },
+  "diaries": {
+    "createDiary": "Create new diary"
+  },
+  "secrets": {
+    "createSecret": "Create new secret"
   }
 }

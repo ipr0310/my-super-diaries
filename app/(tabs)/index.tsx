@@ -1,10 +1,11 @@
 import { Pressable, Text, View } from "react-native";
-import { useAppStore } from "@/hooks/useAppStore";
+import { useAppTheme } from "@/hooks/useAppTheme";
 import { useTranslation } from "@/hooks/useTranslation";
+import { Link } from "expo-router";
 
 export default function Page() {
   const { i18n, locale, setLanguage } = useTranslation();
-  const { themeMode, toggleThemeMode } = useAppStore();
+  const { themeMode, toggleThemeMode } = useAppTheme();
 
   const setToEnglish = () => setLanguage("en");
   const setToSpanish = () => setLanguage("es");
@@ -50,6 +51,14 @@ export default function Page() {
             </Text>
           </Pressable>
         </View>
+
+        <Link href="/modal" asChild>
+          <Pressable>
+            <Text className="text-black dark:text-white text-base">
+              For Nerds: Open Modal
+            </Text>
+          </Pressable>
+        </Link>
       </View>
     </View>
   );

@@ -7,15 +7,19 @@ export default function Page() {
   return (
     <View className="flex-1 items-center justify-center gap-4">
       <Image
-        className="w-52 h-52 rounded-2xl"
-        style={{ backgroundColor: "#0553" }}
-        source={require("../../src/assets/thumbnail.png")}
+        style={{
+          backgroundColor: "#0553",
+          width: 200,
+          height: 200,
+          borderRadius: 16,
+        }}
+        source={require("../../../images/thumbnail.png")}
         placeholder={blurhash}
         contentFit="cover"
         transition={1000}
       />
 
-      <Text className="text-2xl font-medium text-center">
+      <Text className="text-2xl font-medium text-center text-black dark:text-white">
         Made With ❤️ By IPR0310
       </Text>
     </View>
