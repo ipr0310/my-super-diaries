@@ -16,7 +16,7 @@ export default function Page() {
         source={require("../../../images/thumbnail.png")}
         placeholder={blurhash}
         contentFit="cover"
-        transition={1000}
+        transition={500}
       />
 
       <Text className="text-2xl font-medium text-center text-black dark:text-white">

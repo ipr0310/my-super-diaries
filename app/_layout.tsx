@@ -1,5 +1,6 @@
 import "../global.css";
 import { AppThemeProvider } from "@/providers/AppThemeProvider";
+import { DatabaseProvider } from "@/contexts/DatabaseContext";
 import { Stack } from "expo-router";
 
 export {
@@ -14,11 +15,13 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   return (
-    <AppThemeProvider>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-      </Stack>
-    </AppThemeProvider>
+    <DatabaseProvider>
+      <AppThemeProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        </Stack>
+      </AppThemeProvider>
+    </DatabaseProvider>
   );
 }

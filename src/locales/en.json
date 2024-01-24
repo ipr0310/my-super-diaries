@@ -1,6 +1,10 @@
 {
   "welcome": "Welcome to My Super Diaries",
   "set": "Set English",
+  "form": {
+    "required": "This field is required",
+    "submit": "Submit"
+  },
   "bottomBar": {
     "home": "Home",
     "diary": "Diary",
@@ -17,6 +21,8 @@
     "createDiary": "Create new diary"
   },
   "secrets": {
-    "createSecret": "Create new secret"
+    "createSecret": "Create new secret",
+    "title": "Title",
+    "description": "Description"
   }
 }

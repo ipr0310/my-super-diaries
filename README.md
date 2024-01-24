@@ -69,3 +69,28 @@ function A({ rounded, className }) {
   return <B className={className} />;
 }
 ```
+
+## SQLite
+
+### Read
+
+```typescript
+db.transaction(async (tx) => {
+  tx.executeSql("SELECT * FROM diaries LIMIT 250;", [], (result, resultSet) =>
+    console.log({ resultSet: resultSet.rows._array })
+  );
+});
+```
+
+### Write
+
+Expo recommends to use the `?` placeholder for preventing injection attacks
+
+```typescript
+db.transaction((tx) => {
+  tx.executeSql("INSERT INTO diaries (title, description) VALUES (?, ?);", [
+    title,
+    description,
+  ]);
+});
+```
