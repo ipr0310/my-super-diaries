@@ -1,3 +1,16 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome to My Super Diaries",
+  "set": "Set English",
+  "bottomBar": {
+    "home": "Home",
+    "diary": "Diary",
+    "secrets": "Secrets",
+    "credits": "Credits"
+  },
+  "home": {
+    "changeTheme": "Change Theme",
+    "changeLanguage": "Change Language",
+    "currentColorScheme": "Current Color Scheme",
+    "currentLanguage": "Current Language"
+  }
 }

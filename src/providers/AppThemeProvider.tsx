@@ -4,10 +4,6 @@ import {
   DarkTheme,
   DefaultTheme,
 } from "@react-navigation/native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
 import { useAppStore } from "@/hooks/useAppStore";
 import { View } from "react-native";
 
@@ -17,12 +13,11 @@ interface Props {
 
 export const AppThemeProvider = ({ children }: Props) => {
   const { themeMode } = useAppStore();
-  const insets = useSafeAreaInsets();
 
   const activeTheme = themeMode === "dark" ? DarkTheme : DefaultTheme;
 
   return (
-    <View style={{ flex: 1, paddingTop: insets.top }}>
+    <View style={{ flex: 1 }}>
       <ThemeProvider value={activeTheme}>{children}</ThemeProvider>
     </View>
   );

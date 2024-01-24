@@ -13,33 +13,41 @@ export default function Page() {
   return (
     <View className="flex-1 items-center justify-center">
       <View className="flex gap-8 justify-center items-center mb-8">
-        <Text className="font-bold dark:text-white">
-          {i18n.t("welcome")} to this planet called earth!
+        <Text className="font-bold text-black dark:text-white">
+          {i18n.t("welcome")}
         </Text>
 
         <Text className="font-bold text-slate-600 text-2xl capitalize">
-          Current Color Scheme: {themeMode}
+          {i18n.t("home.currentColorScheme")}: {themeMode}
         </Text>
 
         <Pressable onPress={toggleThemeMode}>
-          <Text className="dark:text-white">Change Theme</Text>
+          <Text className="text-black dark:text-white">
+            {i18n.t("home.changeTheme")}
+          </Text>
         </Pressable>
 
         <Text className="font-bold text-slate-600 text-2xl">
-          Current Language: {locale}
+          {i18n.t("home.currentLanguage")}: {locale}
         </Text>
 
         <View className="flex-row gap-8 items-center justify-around">
           <Pressable onPress={setToEnglish}>
-            <Text className="dark:text-white">Set English</Text>
+            <Text className="text-black dark:text-white text-base">
+              🇺🇸 English
+            </Text>
           </Pressable>
 
           <Pressable onPress={setToSpanish}>
-            <Text className="dark:text-white">Set Spanish</Text>
+            <Text className="text-black dark:text-white text-base">
+              🇪🇸 Español
+            </Text>
           </Pressable>
 
           <Pressable onPress={setToJapanese}>
-            <Text className="dark:text-white">Set Japanese</Text>
+            <Text className="text-black dark:text-white text-base">
+              🇯🇵 日本語
+            </Text>
           </Pressable>
         </View>
       </View>
