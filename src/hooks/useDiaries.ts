@@ -8,7 +8,7 @@ export const useDiaries = () => {
   const [diaries, setDiaries] = useState([]);
   const db = useDatabaseContext();
 
-  useSWR(
+  const { mutate } = useSWR(
     "/fetchDiaries",
     () => {
       db.transaction(async (tx) => {
@@ -25,5 +25,5 @@ export const useDiaries = () => {
     }
   );
 
-  return diaries;
+  return { diaries, mutate };
 };

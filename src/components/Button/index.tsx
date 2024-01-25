@@ -8,6 +8,7 @@ const button = tv({
     color: {
       primary: "bg-blue-500",
       secondary: "bg-purple-500",
+      error: "bg-red-500",
     },
     fullWidth: {
       true: "w-full",

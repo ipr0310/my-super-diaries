@@ -1,12 +1,14 @@
 import { Text, View, ScrollView, TextInput, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "expo-router";
 import { Button } from "@/components/Button";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDatabaseContext } from "@/hooks/useDatabaseContext";
-import { useRouter } from "expo-router";
+import { useDiaries } from "@/hooks/useDiaries";
 
 export default function Page() {
   const { i18n } = useTranslation();
+  const { mutate } = useDiaries();
   const {
     control,
     handleSubmit,
@@ -30,11 +32,13 @@ export default function Page() {
       db.transaction((tx) => {
         tx.executeSql(
           "INSERT INTO diaries (title, description, timestamp) VALUES (?, ?, ?);",
-          [title, description, Date.now()]
+          [title, description, Date.now()],
+          () => mutate()
         );
       });
 
-      Alert.alert("Success", "The diary has been added successfully!");
+      Alert.alert("Success", i18n.t("diaries.addSuccess"));
+
       reset();
       navigate("/diaries");
     } catch (error) {

@@ -18,7 +18,12 @@
     "currentLanguage": "Current Language"
   },
   "diaries": {
-    "createDiary": "Create new diary"
+    "createDiary": "Create new diary",
+    "noDiaries": "No diaries has been saved",
+    "startCreating": "Start by creating one!",
+    "delete": "Delete",
+    "addSuccess": "The journal has been added successfully!",
+    "deleteSuccess": "Journal has been successfully deleted!"
   },
   "secrets": {
     "createSecret": "Create new secret",

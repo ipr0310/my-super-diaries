@@ -2,8 +2,10 @@
 
 Mobile and Offline first app which allows you to
 
-- Store your deepest secrets
+- Store your deepest secrets, your secrets never leaves
 - Store your life journal
+
+Your data stays private: Everything is done client-side and never leaves your device.
 
 ## Quality Gate
 
@@ -12,7 +14,6 @@ Mobile and Offline first app which allows you to
 ## Stack
 
 - Expo
-- Expo Router
 - Typescript
 - NativeWind
 - Flashlist
