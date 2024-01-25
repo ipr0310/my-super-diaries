@@ -9,7 +9,7 @@ export const DatabaseProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists diaries (id integer primary key not null, title text, description text);"
+        "create table if not exists diaries (id integer primary key not null, title text, description text, timestamp integer);"
       );
     });
   }, []);

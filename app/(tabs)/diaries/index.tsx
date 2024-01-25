@@ -4,52 +4,44 @@ import { Button } from "@/components/Button";
 import { useTranslation } from "@/hooks/useTranslation";
 import { FlashList } from "@shopify/flash-list";
 import { useAppTheme } from "@/hooks/useAppTheme";
+import { useDiaries } from "@/hooks/useDiaries";
+import { formatDistance } from "date-fns";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const DATA = [
-  {
-    title: "1 Item",
-  },
-  {
-    title: "2 Item",
-  },
-  {
-    title: "3 Item",
-  },
-  {
-    title: "4 Item",
-  },
-  {
-    title: "5 Item",
-  },
-  {
-    title: "6 Item",
-  },
-  {
-    title: "7 Item",
-  },
-  {
-    title: "8 Item",
-  },
-];
-
 export default function Page() {
-  const { i18n } = useTranslation();
+  const { i18n, dateLocale } = useTranslation();
   const { iconColor } = useAppTheme();
   const { navigate } = useRouter();
+  const diaries = useDiaries();
 
   const createNewDiary = () => navigate("/diaries/create");
 
   return (
     <View className="flex-1 relative flex items-start justify-start">
-      <View className="w-full h-full pb-16">
+      <View className="w-full h-full pb-16 gap-8">
         <FlashList
-          data={DATA}
+          data={diaries}
           renderItem={({ item }) => (
-            <Text className="w-full  black-white dark:text-white text-9xl">
-              {item.title}
-            </Text>
+            <View className="flex items-center p-4 border-b-2 bottom-1 border-slate-300 dark:border-gray-50">
+              <Text className="w-full text-lg text-black dark:text-white">
+                {/* @ts-ignore */}
+                {item.title}
+              </Text>
+
+              <Text className="w-full  text-lg text-black dark:text-white">
+                {/* @ts-ignore */}
+                {item.description}
+              </Text>
+
+              <Text className="w-full  text-black dark:text-white opacity-60">
+                {/* @ts-ignore */}
+                {formatDistance(new Date(item.timestamp), new Date(), {
+                  addSuffix: true,
+                  locale: dateLocale,
+                })}
+              </Text>
+            </View>
           )}
           estimatedItemSize={200}
         />

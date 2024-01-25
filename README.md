@@ -91,6 +91,7 @@ db.transaction((tx) => {
   tx.executeSql("INSERT INTO diaries (title, description) VALUES (?, ?);", [
     title,
     description,
+    Date.now(),
   ]);
 });
 ```

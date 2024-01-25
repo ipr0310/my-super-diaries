@@ -1,27 +1,15 @@
 import { Pressable, Text, View } from "react-native";
+import { Link } from "expo-router";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useDatabaseContext } from "@/hooks/useDatabaseContext";
-import { Link } from "expo-router";
 
 export default function Page() {
   const { i18n, locale, setLanguage } = useTranslation();
   const { themeMode, toggleThemeMode } = useAppTheme();
-  const db = useDatabaseContext();
 
   const setToEnglish = () => setLanguage("en");
   const setToSpanish = () => setLanguage("es");
   const setToJapanese = () => setLanguage("jp");
-
-  const getDiaries = () => {
-    db.transaction(async (tx) => {
-      tx.executeSql(
-        "SELECT * FROM diaries LIMIT 250;",
-        [],
-        (result, resultSet) => console.log({ resultSet: resultSet.rows._array })
-      );
-    });
-  };
 
   return (
     <View className="flex-1 items-center justify-center">
@@ -71,10 +59,6 @@ export default function Page() {
             </Text>
           </Pressable>
         </Link>
-
-        <Pressable>
-          <Text onPress={getDiaries}>Get Diaries</Text>
-        </Pressable>
       </View>
     </View>
   );
