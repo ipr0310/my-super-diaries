@@ -23,8 +23,8 @@ const button = tv({
 type ButtonVariants = VariantProps<typeof button>;
 
 interface Props extends ButtonVariants {
-  onPress: () => void;
   label: string;
+  onPress?: () => void;
   Icon?: ReactNode;
 }
 

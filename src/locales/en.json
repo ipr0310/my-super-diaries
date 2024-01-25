@@ -29,5 +29,6 @@
     "createSecret": "Create new secret",
     "title": "Title",
     "description": "Description"
-  }
+  },
+  "credits": { "sourceCode": "View source code" }
 }
