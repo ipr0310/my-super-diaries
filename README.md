@@ -96,3 +96,7 @@ db.transaction((tx) => {
   ]);
 });
 ```
+
+## Build App
+
+https://docs.expo.dev/build/setup/
