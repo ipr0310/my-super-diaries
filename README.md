@@ -14,6 +14,7 @@ Your data stays private: Everything is done client-side and never leaves your de
 ## Stack
 
 - Expo
+- Expo EAS Services
 - Typescript
 - NativeWind
 - Flashlist
