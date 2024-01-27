@@ -22,7 +22,6 @@ export default function Page() {
   });
 
   const { navigate } = useRouter();
-
   const db = useDatabaseContext();
 
   const onSubmit = handleSubmit((data) => {
@@ -57,7 +56,7 @@ export default function Page() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                placeholder={i18n.t("secrets.title")}
+                placeholder={i18n.t("form.title")}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}

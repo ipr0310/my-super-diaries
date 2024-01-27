@@ -11,6 +11,10 @@ export const DatabaseProvider = ({ children }: { children: ReactNode }) => {
       tx.executeSql(
         "CREATE TABLE IF NOT EXISTS diaries (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, timestamp INTEGER);"
       );
+
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS secrets (id INTEGER PRIMARY KEY AUTOINCREMENT, key TEXT);"
+      );
     });
   }, []);
 

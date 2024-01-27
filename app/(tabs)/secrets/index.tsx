@@ -1,59 +1,79 @@
-import { Text, View } from "react-native";
+import { View, Text, Alert } from "react-native";
+import { useRouter } from "expo-router";
 import { FlashList } from "@shopify/flash-list";
 import { Button } from "@/components/Button";
-import { useAppTheme } from "@/hooks/useAppTheme";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useRouter } from "expo-router";
+import { useSecrets } from "@/hooks/useSecrets";
+import { useAppTheme } from "@/hooks/useAppTheme";
+import { useDatabaseContext } from "@/hooks/useDatabaseContext";
 
+import * as SecureStore from "expo-secure-store";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
-const DATA = [
-  {
-    title: "1 Item",
-  },
-  {
-    title: "2 Item",
-  },
-  {
-    title: "3 Item",
-  },
-  {
-    title: "4 Item",
-  },
-  {
-    title: "5 Item",
-  },
-  {
-    title: "6 Item",
-  },
-  {
-    title: "7 Item",
-  },
-  {
-    title: "8 Item",
-  },
-];
 
 export default function Page() {
   const { i18n } = useTranslation();
   const { iconColor } = useAppTheme();
   const { push } = useRouter();
+  const { secrets, mutate } = useSecrets();
+  const db = useDatabaseContext();
 
   const createNewSecret = () => push("/secrets/create");
 
+  const deleteDiary = async (id: string) => {
+    try {
+      await SecureStore.deleteItemAsync(id, {
+        requireAuthentication: true,
+        authenticationPrompt: i18n.t("secrets.deletePrompt"),
+        keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+      });
+
+      db.transaction((tx) => {
+        tx.executeSql("DELETE FROM secrets WHERE id = ?;", [id], () =>
+          mutate()
+        );
+      });
+
+      Alert.alert("Success", i18n.t("secrets.deleteSuccess"));
+    } catch (error) {
+      Alert.alert("Error", "Deletion request cancelled");
+    }
+  };
+
   return (
     <View className="flex-1 relative flex items-start justify-start">
-      <View className="w-full h-full pb-16">
-        <FlashList
-          data={DATA}
-          renderItem={({ item }) => (
-            <Text className="w-full  black-white dark:text-white text-9xl">
-              {item.title}
-            </Text>
-          )}
-          estimatedItemSize={200}
-        />
-      </View>
+      {!!secrets.length ? (
+        <View className="w-full h-full pb-16 gap-8">
+          <FlashList
+            data={secrets}
+            renderItem={({ item }) => (
+              <View className="flex items-start justify-start p-4 border-b-2 bottom-1 border-slate-300 dark:border-gray-50">
+                <Text className="w-full text-lg text-black dark:text-white">
+                  {/* @ts-ignore */}
+                  {item.key}
+                </Text>
+
+                <Button
+                  label={i18n.t("delete")}
+                  color="error"
+                  // @ts-ignore
+                  onPress={() => deleteDiary(item.id)}
+                />
+              </View>
+            )}
+            estimatedItemSize={200}
+          />
+        </View>
+      ) : (
+        <View className="w-full h-full justify-center items-center gap-4">
+          <Text className="text-9xl py-4">🤐</Text>
+          <Text className="text-2xl font-medium text-center text-black dark:text-white">
+            {i18n.t("secrets.noSecrets")}
+          </Text>
+          <Text className="text-center text-black dark:text-white">
+            {i18n.t("startCreating")}
+          </Text>
+        </View>
+      )}
 
       <View className="flex justify-center items-center absolute inset-x-0 bottom-0 h-16">
         <View className="w-full max-w-sm">

@@ -1,7 +1,10 @@
 {
   "welcome": "Welcome to My Super Diaries",
   "set": "Set English",
+  "delete": "Delete",
+  "startCreating": "Start by creating one!",
   "form": {
+    "title": "Title",
     "required": "This field is required",
     "submit": "Submit"
   },
@@ -20,15 +23,17 @@
   "diaries": {
     "createDiary": "Create new diary",
     "noDiaries": "No diaries has been saved",
-    "startCreating": "Start by creating one!",
-    "delete": "Delete",
     "addSuccess": "The journal has been added successfully!",
     "deleteSuccess": "Journal has been successfully deleted!"
   },
   "secrets": {
     "createSecret": "Create new secret",
-    "title": "Title",
-    "description": "Description"
+    "noSecrets": "No secrets has been saved",
+    "description": "Description",
+    "addSuccess": "The secret has been added successfully!",
+    "deleteSuccess": "Secret has been successfully deleted!",
+    "deletePrompt": "Before you deleted the secret. Let's verify it's you!",
+    "addPrompt": "Before you add the secret. Let's verify it's you!"
   },
   "credits": { "sourceCode": "View source code" }
 }

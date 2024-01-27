@@ -53,7 +53,7 @@ export default function Page() {
                 </Text>
 
                 <Button
-                  label={i18n.t("diaries.delete")}
+                  label={i18n.t("delete")}
                   color="error"
                   // @ts-ignore
                   onPress={() => deleteDiary(item.id)}
@@ -65,12 +65,12 @@ export default function Page() {
         </View>
       ) : (
         <View className="w-full h-full justify-center items-center gap-4">
-          <Text className="text-7xl">📒</Text>
+          <Text className="text-9xl py-4">📒</Text>
           <Text className="text-2xl font-medium text-center text-black dark:text-white">
             {i18n.t("diaries.noDiaries")}
           </Text>
           <Text className="text-center text-black dark:text-white">
-            {i18n.t("diaries.startCreating")}
+            {i18n.t("startCreating")}
           </Text>
         </View>
       )}
