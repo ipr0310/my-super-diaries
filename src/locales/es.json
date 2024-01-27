@@ -1,3 +1,41 @@
 {
-  "welcome": "Bienvenidos"
+  "welcome": "Bienvenidos",
+  "bottomBar": {
+    "credits": "Créditos",
+    "diary": "Diario",
+    "home": "Hogar",
+    "secrets": "Misterios"
+  },
+  "credits": {
+    "sourceCode": "Ver código fuente"
+  },
+  "delete": "Borrar",
+  "diaries": {
+    "addSuccess": "¡La revista se ha agregado exitosamente!",
+    "createDiary": "Crear nuevo diario",
+    "deleteSuccess": "¡El diario se ha eliminado correctamente!",
+    "noDiaries": "No se han guardado diarios"
+  },
+  "form": {
+    "required": "Este campo es obligatorio",
+    "submit": "Entregar",
+    "title": "Título"
+  },
+  "home": {
+    "changeLanguage": "Cambiar idioma",
+    "changeTheme": "Cambiar de tema",
+    "currentColorScheme": "Esquema de colores actual",
+    "currentLanguage": "Idioma actual"
+  },
+  "secrets": {
+    "addPrompt": "Antes de agregar el secreto. ¡Verifiquemos que eres tú!",
+    "addSuccess": "¡El secreto se ha agregado con éxito!",
+    "createSecret": "Crear nuevo secreto",
+    "deletePrompt": "Antes de que borraras el secreto. ¡Verifiquemos que eres tú!",
+    "deleteSuccess": "¡El secreto se ha eliminado correctamente!",
+    "description": "Descripción",
+    "noSecrets": "No se han guardado secretos."
+  },
+  "set": "Establecer Español",
+  "startCreating": "¡Empiece por crear uno!"
 }

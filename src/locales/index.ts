@@ -2,15 +2,13 @@ import { getLocales } from "expo-localization";
 import { I18n } from "i18n-js";
 import en from "./en.json";
 import es from "./es.json";
-import jp from "./jp.json";
 
-export type locales = "en" | "es" | "jp";
+export type locales = "en" | "es";
 
 export const getI18n = () =>
   new I18n({
     en,
     es,
-    jp,
   });
 
 export const getDefaultLanguage = (): locales => {

@@ -9,7 +9,6 @@ export default function Page() {
 
   const setToEnglish = () => setLanguage("en");
   const setToSpanish = () => setLanguage("es");
-  const setToJapanese = () => setLanguage("jp");
 
   return (
     <View className="flex-1 items-center justify-center">
@@ -42,12 +41,6 @@ export default function Page() {
           <Pressable onPress={setToSpanish}>
             <Text className="text-black dark:text-white text-base">
               🇪🇸 Español
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={setToJapanese}>
-            <Text className="text-black dark:text-white text-base">
-              🇯🇵 日本語
             </Text>
           </Pressable>
         </View>

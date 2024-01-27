@@ -35,5 +35,7 @@
     "deletePrompt": "Before you deleted the secret. Let's verify it's you!",
     "addPrompt": "Before you add the secret. Let's verify it's you!"
   },
-  "credits": { "sourceCode": "View source code" }
+  "credits": {
+    "sourceCode": "View source code"
+  }
 }
