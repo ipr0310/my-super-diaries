@@ -19,7 +19,24 @@ export default function Page() {
 
   const createNewSecret = () => push("/secrets/create");
 
-  const deleteDiary = async (id: string) => {
+  const readSecret = async (id: string) => {
+    try {
+      const result = await SecureStore.getItemAsync(id, {
+        requireAuthentication: true,
+        authenticationPrompt: i18n.t("secrets.readPrompt"),
+        keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+      });
+
+      if (!result) throw new Error("Cancelled");
+
+      Alert.alert("Secret:", result);
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Operation cancelled");
+    }
+  };
+
+  const deleteSecret = async (id: string) => {
     try {
       await SecureStore.deleteItemAsync(id, {
         requireAuthentication: true,
@@ -35,6 +52,7 @@ export default function Page() {
 
       Alert.alert("Success", i18n.t("secrets.deleteSuccess"));
     } catch (error) {
+      console.error(error);
       Alert.alert("Error", "Deletion request cancelled");
     }
   };
@@ -52,12 +70,21 @@ export default function Page() {
                   {item.key}
                 </Text>
 
-                <Button
-                  label={i18n.t("delete")}
-                  color="error"
-                  // @ts-ignore
-                  onPress={() => deleteDiary(item.id)}
-                />
+                <View className="flex flex-row justify-between items-center bg-red-600 border-1 border-red-600 p-8 gap-8">
+                  <Button
+                    label={i18n.t("read")}
+                    color="primary"
+                    // @ts-ignore
+                    onPress={() => readSecret(item.id)}
+                  />
+
+                  <Button
+                    label={i18n.t("delete")}
+                    color="error"
+                    // @ts-ignore
+                    onPress={() => deleteSecret(item.id)}
+                  />
+                </View>
               </View>
             )}
             estimatedItemSize={200}

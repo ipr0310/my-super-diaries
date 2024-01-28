@@ -3,12 +3,24 @@ import { Link } from "expo-router";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useTranslation } from "@/hooks/useTranslation";
 
+import * as LocalAuthentication from "expo-local-authentication";
+
 export default function Page() {
   const { i18n, locale, setLanguage } = useTranslation();
   const { themeMode, toggleThemeMode } = useAppTheme();
 
   const setToEnglish = () => setLanguage("en");
   const setToSpanish = () => setLanguage("es");
+
+  const checkHardwareAuth = async () => {
+    const compatible = await LocalAuthentication.hasHardwareAsync();
+    const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+    const authLevel = await LocalAuthentication.getEnrolledLevelAsync();
+    const supportedTypes =
+      await LocalAuthentication.supportedAuthenticationTypesAsync();
+
+    console.log({ compatible, isEnrolled, authLevel, supportedTypes });
+  };
 
   return (
     <View className="flex-1 items-center justify-center">
@@ -52,6 +64,12 @@ export default function Page() {
             </Text>
           </Pressable>
         </Link>
+
+        <Pressable onPress={checkHardwareAuth}>
+          <Text className="text-black dark:text-white text-base">
+            For Nerds: Console.log() Hardware available for authentication
+          </Text>
+        </Pressable>
       </View>
     </View>
   );

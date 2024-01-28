@@ -2,6 +2,7 @@
   "welcome": "Welcome to My Super Diaries",
   "set": "Set English",
   "delete": "Delete",
+  "read": "Read",
   "startCreating": "Start by creating one!",
   "form": {
     "title": "Title",
@@ -33,7 +34,8 @@
     "addSuccess": "The secret has been added successfully!",
     "deleteSuccess": "Secret has been successfully deleted!",
     "deletePrompt": "Before you deleted the secret. Let's verify it's you!",
-    "addPrompt": "Before you add the secret. Let's verify it's you!"
+    "addPrompt": "Before you add the secret. Let's verify it's you!",
+    "readPrompt": "Before you read the secret. Let's verify it's you!"
   },
   "credits": {
     "sourceCode": "View source code"
