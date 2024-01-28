@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { View, Text, Pressable } from "react-native";
 import { tv, type VariantProps } from "tailwind-variants";
 
-const button = tv({
+const classes = tv({
   base: "flex flex-row items-center gap-2 justify-center font-medium active:opacity-80 ripple-[#333] ripple-bordered px-4 py-2 overflow-hidden",
   variants: {
     color: {
@@ -20,7 +20,7 @@ const button = tv({
   },
 });
 
-type ButtonVariants = VariantProps<typeof button>;
+type ButtonVariants = VariantProps<typeof classes>;
 
 interface Props extends ButtonVariants {
   label: string;
@@ -36,7 +36,7 @@ export const Button = ({
   Icon,
 }: Props) => {
   return (
-    <Pressable className={button({ color, fullWidth })} onPress={onPress}>
+    <Pressable className={classes({ color, fullWidth })} onPress={onPress}>
       {Icon && <View>{Icon}</View>}
 
       <Text className="text-white dark:text-black text-lg text-center">
