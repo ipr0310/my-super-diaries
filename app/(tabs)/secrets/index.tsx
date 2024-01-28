@@ -19,15 +19,15 @@ export default function Page() {
 
   const createNewSecret = () => push("/secrets/create");
 
-  const readSecret = async (id: string) => {
+  const readSecret = async (key: string) => {
     try {
-      const result = await SecureStore.getItemAsync(id, {
+      const result = await SecureStore.getItemAsync(key, {
         requireAuthentication: true,
         authenticationPrompt: i18n.t("secrets.readPrompt"),
         keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
       });
 
-      if (!result) throw new Error("Cancelled");
+      if (!result) return Alert.alert("No values stored under that key.");
 
       Alert.alert("Secret:", result);
     } catch (error) {
@@ -36,16 +36,16 @@ export default function Page() {
     }
   };
 
-  const deleteSecret = async (id: string) => {
+  const deleteSecret = (key: string) => {
     try {
-      await SecureStore.deleteItemAsync(id, {
+      SecureStore.deleteItemAsync(key, {
         requireAuthentication: true,
         authenticationPrompt: i18n.t("secrets.deletePrompt"),
         keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
       });
 
       db.transaction((tx) => {
-        tx.executeSql("DELETE FROM secrets WHERE id = ?;", [id], () =>
+        tx.executeSql("DELETE FROM secrets WHERE key = ?;", [key], () =>
           mutate()
         );
       });
@@ -75,14 +75,14 @@ export default function Page() {
                     label={i18n.t("read")}
                     color="primary"
                     // @ts-ignore
-                    onPress={() => readSecret(item.id)}
+                    onPress={() => readSecret(item.key)}
                   />
 
                   <Button
                     label={i18n.t("delete")}
                     color="error"
                     // @ts-ignore
-                    onPress={() => deleteSecret(item.id)}
+                    onPress={() => deleteSecret(item.key)}
                   />
                 </View>
               </View>
