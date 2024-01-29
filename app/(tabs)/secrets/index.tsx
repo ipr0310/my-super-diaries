@@ -68,7 +68,7 @@ export default function Page() {
 
   return (
     <View className="flex-1 relative flex items-start justify-start">
-      {!!data.length ? (
+      {data.length ? (
         <View className="w-full h-full pb-16 gap-8">
           <FlashList
             data={data}
