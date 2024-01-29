@@ -13,9 +13,12 @@ Your data stays private: Everything is done client-side and never leaves your de
 
 ## Stack
 
+- Typescript
 - Expo
 - Expo EAS Services
-- Typescript
+- Expo SQLite
+- Drizzle ORM
+- Tailwind
 - NativeWind
 - Flashlist
 
@@ -72,31 +75,13 @@ function A({ rounded, className }) {
 }
 ```
 
-## SQLite
+## Expo SQLite + Drizzle ORM
 
-### Read
+https://orm.drizzle.team/docs/get-started-sqlite#expo-sqlite
 
-```typescript
-db.transaction(async (tx) => {
-  tx.executeSql("SELECT * FROM diaries LIMIT 250;", [], (result, resultSet) =>
-    console.log({ resultSet: resultSet.rows._array })
-  );
-});
-```
+### Debug Database File
 
-### Write
-
-Expo recommends to use the `?` placeholder for preventing injection attacks
-
-```typescript
-db.transaction((tx) => {
-  tx.executeSql("INSERT INTO diaries (title, description) VALUES (?, ?);", [
-    title,
-    description,
-    Date.now(),
-  ]);
-});
-```
+https://sqliteviewer.app/
 
 ## Build App
 

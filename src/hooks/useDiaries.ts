@@ -1,29 +1,24 @@
 import { useState } from "react";
 import { useDatabaseContext } from "@/hooks/useDatabaseContext";
+import { diaries, type Diary } from "@/types/database";
 import useSWR from "swr";
 
 // THIS IS NOT THE MOST OPTIMAL WAY OF FETCHING THIS
 // FOR POSSIBLE UPDATES YES, BUT FOR READING, NO
 export const useDiaries = () => {
-  const [diaries, setDiaries] = useState([]);
+  const [data, setData] = useState<Diary[]>([]);
   const db = useDatabaseContext();
 
   const { mutate } = useSWR(
     "/fetchDiaries",
-    () => {
-      db.transaction(async (tx) => {
-        tx.executeSql(
-          "SELECT * FROM diaries LIMIT 500;",
-          [],
-          // @ts-ignore
-          (result, resultSet) => setDiaries(resultSet.rows._array || [])
-        );
-      });
+    async () => {
+      const result: Diary[] = await db.select().from(diaries);
+      setData(result);
     },
     {
       refreshInterval: 5_000,
     }
   );
 
-  return { diaries, mutate };
+  return { data, mutate };
 };

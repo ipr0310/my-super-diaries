@@ -5,6 +5,9 @@ import { Button } from "@/components/Button";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDatabaseContext } from "@/hooks/useDatabaseContext";
 import { useDiaries } from "@/hooks/useDiaries";
+import { diaries } from "@/types/database";
+
+import * as Crypto from "expo-crypto";
 
 export default function Page() {
   const { i18n } = useTranslation();
@@ -24,20 +27,15 @@ export default function Page() {
   const { navigate } = useRouter();
   const db = useDatabaseContext();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     const { title, description } = data;
+    const id = Crypto.randomUUID();
+    const timestamp = Date.now();
 
     try {
-      db.transaction((tx) => {
-        tx.executeSql(
-          "INSERT INTO diaries (title, description, timestamp) VALUES (?, ?, ?);",
-          [title, description, Date.now()],
-          () => mutate()
-        );
-      });
-
+      await db.insert(diaries).values({ id, title, description, timestamp });
+      await mutate();
       Alert.alert("Success", i18n.t("diaries.addSuccess"));
-
       reset();
       navigate("/diaries");
     } catch (error) {
