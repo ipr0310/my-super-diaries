@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, Alert } from "react-native";
 import { Link } from "expo-router";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -19,7 +19,10 @@ export default function Page() {
     const supportedTypes =
       await LocalAuthentication.supportedAuthenticationTypesAsync();
 
+    const payload = { compatible, isEnrolled, authLevel, supportedTypes };
+
     console.log({ compatible, isEnrolled, authLevel, supportedTypes });
+    Alert.alert("Feedback", JSON.stringify(payload));
   };
 
   return (
@@ -67,7 +70,7 @@ export default function Page() {
 
         <Pressable onPress={checkHardwareAuth}>
           <Text className="text-black dark:text-white text-base">
-            For Nerds: Console.log() Hardware available for authentication
+            For Nerds: Hardware available for authentication
           </Text>
         </Pressable>
       </View>

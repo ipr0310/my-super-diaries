@@ -34,8 +34,11 @@
     "deletePrompt": "Antes de que borraras el secreto. ¡Verifiquemos que eres tú!",
     "deleteSuccess": "¡El secreto se ha eliminado correctamente!",
     "description": "Descripción",
-    "noSecrets": "No se han guardado secretos."
+    "noSecrets": "No se han guardado secretos.",
+    "noBiometrics": "¡Ups!, no puedes guardar secretos en este dispositivo porque no tiene un hardware biométrico potente.",
+    "readPrompt": "Antes de leer el secreto. ¡Verifiquemos que eres tú!"
   },
   "set": "Establecer Español",
-  "startCreating": "¡Empiece por crear uno!"
+  "startCreating": "¡Empiece por crear uno!",
+  "read": "Leer"
 }

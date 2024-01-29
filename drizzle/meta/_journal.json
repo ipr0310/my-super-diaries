@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1706541327059,
+      "tag": "0000_jittery_silvermane",
+      "breakpoints": true
+    }
+  ]
+}

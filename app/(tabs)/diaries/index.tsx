@@ -7,6 +7,8 @@ import { FlashList } from "@shopify/flash-list";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { useDiaries } from "@/hooks/useDiaries";
 import { useDatabaseContext } from "@/hooks/useDatabaseContext";
+import { eq } from "drizzle-orm";
+import { diaries } from "@/types/database";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -14,38 +16,38 @@ export default function Page() {
   const { i18n, dateLocale } = useTranslation();
   const { iconColor } = useAppTheme();
   const { navigate } = useRouter();
-  const { diaries, mutate } = useDiaries();
+  const { data, mutate } = useDiaries();
   const db = useDatabaseContext();
 
   const createNewDiary = () => navigate("/diaries/create");
 
-  const deleteDiary = (id: string) => {
-    db.transaction((tx) => {
-      tx.executeSql("DELETE FROM diaries WHERE id = ?;", [id], () => mutate());
-    });
-    Alert.alert("Success", i18n.t("diaries.deleteSuccess"));
+  const deleteDiary = async (id: string) => {
+    try {
+      await db.delete(diaries).where(eq(diaries.id, id));
+      await mutate();
+      Alert.alert("Success", i18n.t("diaries.deleteSuccess"));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <View className="flex-1 relative flex items-start justify-start">
-      {!!diaries.length ? (
+      {!!data.length ? (
         <View className="w-full h-full pb-16 gap-8">
           <FlashList
-            data={diaries}
+            data={data}
             renderItem={({ item }) => (
               <View className="flex items-start justify-start p-4 border-b-2 bottom-1 border-slate-300 dark:border-gray-50">
                 <Text className="w-full text-lg text-black dark:text-white">
-                  {/* @ts-ignore */}
                   {item.title}
                 </Text>
 
                 <Text className="w-full text-base text-black dark:text-white opacity-80">
-                  {/* @ts-ignore */}
                   {item.description}
                 </Text>
 
                 <Text className="w-full text-sm text-black dark:text-white opacity-60 mb-2">
-                  {/* @ts-ignore */}
                   {formatDistance(new Date(item.timestamp), new Date(), {
                     addSuffix: true,
                     locale: dateLocale,
@@ -55,7 +57,6 @@ export default function Page() {
                 <Button
                   label={i18n.t("delete")}
                   color="error"
-                  // @ts-ignore
                   onPress={() => deleteDiary(item.id)}
                 />
               </View>

@@ -5,6 +5,7 @@ import { Button } from "@/components/Button";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useDatabaseContext } from "@/hooks/useDatabaseContext";
 import { useSecrets } from "@/hooks/useSecrets";
+import { secrets } from "@/types/database";
 
 import * as Crypto from "expo-crypto";
 import * as SecureStore from "expo-secure-store";
@@ -26,26 +27,22 @@ export default function Page() {
   const { navigate } = useRouter();
   const db = useDatabaseContext();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     const secret = data.secret.trim();
+    const id = Crypto.randomUUID();
     const key = Crypto.randomUUID();
 
     try {
-      SecureStore.setItem(key, secret, {
+      await SecureStore.setItemAsync(key, secret, {
         requireAuthentication: true,
         authenticationPrompt: i18n.t("secrets.addPrompt"),
         keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
       });
-
-      db.transaction((tx) => {
-        tx.executeSql("INSERT INTO secrets (key) VALUES (?);", [key], () =>
-          mutate()
-        );
-      });
-
+      await db.insert(secrets).values({ id, key });
+      await mutate();
+      Alert.alert("Success", i18n.t("secrets.addSuccess"));
       reset();
       navigate("/secrets");
-      Alert.alert("Success", i18n.t("secrets.addSuccess"));
     } catch (error) {
       console.error(error);
     }

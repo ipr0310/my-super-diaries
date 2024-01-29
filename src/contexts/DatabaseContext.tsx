@@ -1,22 +1,23 @@
-import * as SQLite from "expo-sqlite";
-import { createContext, type ReactNode, useEffect } from "react";
+import { useEffect, createContext, type ReactNode } from "react";
+import { drizzle } from "drizzle-orm/expo-sqlite";
+import { openDatabaseSync } from "expo-sqlite/next";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import migrations from "../../drizzle/migrations";
+import * as SplashScreen from "expo-splash-screen";
 
-const db = SQLite.openDatabase("database.sqlite");
+const expoDb = openDatabaseSync("database.db");
+const db = drizzle(expoDb);
 
 export const DatabaseContext = createContext(db);
 
 export const DatabaseProvider = ({ children }: { children: ReactNode }) => {
-  useEffect(() => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS diaries (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, timestamp INTEGER);"
-      );
+  const { success, error } = useMigrations(db, migrations);
 
-      tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS secrets (id INTEGER PRIMARY KEY AUTOINCREMENT, key TEXT);"
-      );
-    });
-  }, []);
+  useEffect(() => {
+    if (!success || error) return;
+
+    SplashScreen.hideAsync();
+  }, [success]);
 
   return (
     <DatabaseContext.Provider value={db}>{children}</DatabaseContext.Provider>

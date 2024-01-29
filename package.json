@@ -8,17 +8,22 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "prebuild": "npx expo prebuild --clean",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "generate": "npx drizzle-kit generate:sqlite"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.21.0",
     "@shopify/flash-list": "1.6.3",
+    "babel-plugin-inline-import": "^3.0.0",
     "date-fns": "^3.3.1",
+    "drizzle-orm": "^0.29.3",
     "expo": "^50.0.3",
     "expo-clipboard": "~5.0.1",
     "expo-constants": "~15.4.5",
+    "expo-crypto": "~12.8.0",
     "expo-image": "~1.10.5",
     "expo-linking": "~6.2.2",
+    "expo-local-authentication": "~13.8.0",
     "expo-localization": "~14.8.3",
     "expo-router": "~3.4.5",
     "expo-secure-store": "~12.8.1",
@@ -36,13 +41,12 @@
     "react-native-screens": "~3.29.0",
     "swr": "^2.2.4",
     "tailwind-variants": "^0.1.20",
-    "zustand": "^4.5.0",
-    "expo-crypto": "~12.8.0",
-    "expo-local-authentication": "~13.8.0"
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
+    "drizzle-kit": "^0.20.13",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.3"
   },
