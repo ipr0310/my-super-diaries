@@ -24,6 +24,8 @@ Your data stays private: Everything is done client-side and never leaves your de
 
 ## Expo
 
+https://expo.dev/@ipr0310/diaries-app
+
 ### Commands
 
 - `npx expo install` Install dependencies using expo
